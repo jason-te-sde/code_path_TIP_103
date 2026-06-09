@@ -22,28 +22,43 @@ Example Output:
 """
 
 def tiggerfy(word):
-	res = ""
+	res = []
 	n = len(word)
+	word = word.lower()
 	i = 0
-	one_char = ["t", "i"]
-	two_char = ["gg", "er"]
+	one_char = {"t", "i"}
+	two_char = {"gg", "er"}
 	while i < n:
-		if i < n - 1 and word[i:i+2].lower() in two_char:
+		if i < n - 1 and word[i:i+2] in two_char:
 			i += 2
-		elif word[i].lower() in one_char:
+		elif word[i] in one_char:
 			i += 1
 		else:
-			res += word[i]
+			res.append(word[i])
 			i += 1
-	print(res)
-	return res
+	return "".join(res)
 
         
 
 if __name__ == "__main__":
 	word = "Trigger"
-	tiggerfy(word)
+	print(tiggerfy(word))
+
 	word = "eggplant"
-	tiggerfy(word)
+	print(tiggerfy(word))
+
 	word = "Choir"
-	tiggerfy(word)
+	print(tiggerfy(word))
+	
+	# Additional edge cases
+	test_cases = [
+        ("Trigger", "r"),           # Basic example + case handling
+        ("", ""),                   # Empty string
+        ("abc", "abc"),             # No removable characters
+        ("tti", ""),                # All removable characters
+    ]
+    
+	for word, expected in test_cases:
+		result = tiggerfy(word)
+		status = "✓" if result == expected else "✗"
+		print(f"{status} tiggerfy('{word}') = '{result}' (expected '{expected}')")

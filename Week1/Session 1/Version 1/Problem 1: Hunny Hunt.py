@@ -19,24 +19,44 @@ Example Output:
 """
 
 
-def linear_search(items, tagret):
+def linear_search(items, target):
 
-    flag = False
     for i in range(len(items)):
-        if target == items[i]:
-            print(i)
-            flag = True
-
-    if flag == True:
-        print("-1")
-
+        if items[i] == target:
+            return i
+    
+    return -1
 
 if __name__ == "__main__":
-
     items = ['haycorn', 'haycorn', 'haycorn', 'hunny', 'haycorn']
     target = 'hunny'
-    linear_search(items, target)
+    print(linear_search(items, target))
 
     items = ['bed', 'blue jacket', 'red shirt', 'hunny']
     target = 'red balloon'
-    linear_search(items, target)
+    print(linear_search(items, target))
+
+    # Additional edge cases
+    items = ['hunny', 'bed', 'blue jacket']
+    target = 'hunny'
+    print(f"Target at start: {linear_search(items, target)}")  # Should be 0
+
+    items = ['bed', 'blue jacket', 'hunny']
+    target = 'hunny'
+    print(f"Target at end: {linear_search(items, target)}")  # Should be 2
+
+    items = []
+    target = 'hunny'
+    print(f"Empty list: {linear_search(items, target)}")  # Should be -1
+
+    items = ['hunny']
+    target = 'hunny'
+    print(f"Single element match: {linear_search(items, target)}")  # Should be 0
+
+    items = ['bed']
+    target = 'hunny'
+    print(f"Single element no match: {linear_search(items, target)}")  # Should be -1
+
+    items = ['hunny', 'bed', 'hunny', 'blue jacket']
+    target = 'hunny'
+    print(f"Duplicates - return first: {linear_search(items, target)}")  # Should be 0
