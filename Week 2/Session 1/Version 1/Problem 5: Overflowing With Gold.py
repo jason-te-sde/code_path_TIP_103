@@ -38,9 +38,6 @@ def find_treasure_indices(gold_amounts, target):
     
     return []
             
-            
-
-
 gold_amounts1 = [2, 7, 11, 15]
 target1 = 9
 
