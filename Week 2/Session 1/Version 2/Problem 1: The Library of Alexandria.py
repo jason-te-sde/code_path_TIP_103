@@ -28,12 +28,24 @@ Example Output:
 {'Room A': 0, 'Room B': -10, 'Room C': 10, 'Room D': 0}
 """
 
+# # Assume the keys are consistent
+# def analyze_library(library_catalog, actual_distribution):
+#     res = {}
+    
+#     for room, number in actual_distribution.items():
+#         original_number = library_catalog[room]
+#         res[room] = number - original_number
+    
+#     return res
+
+# For robustness
 def analyze_library(library_catalog, actual_distribution):
     res = {}
     
-    for room, number in actual_distribution.items():
-        original_number = library_catalog[room]
-        res[room] = number - original_number
+    for room in library_catalog.keys() | actual_distribution.keys():
+        actual = actual_distribution.get(room, 0)
+        expected = library_catalog.get(room, 0)
+        res[room] = actual - expected
     
     return res
 
